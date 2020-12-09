@@ -2,19 +2,18 @@ lazy val plugin = Project (
   id = "plugin",
   base = file ("plugin")
 ).settings(
-  Seq(
-    name := "play-scalate",
-    organization := "org.scalatra.scalate",
-    version := "0.5.1-SNAPSHOT",
-    scalaVersion := "2.13.1",
-    crossScalaVersions := Seq("2.12.10", "2.13.2"),
-    resolvers += Resolver.typesafeRepo("releases"),
-    libraryDependencies ++= Seq(
-      "com.typesafe.play" %% "play" % play.core.PlayVersion.current % "provided",
-      "org.scalatra.scalate" %% "scalate-core" % "1.9.6" % "provided"
-    ),
-    scalacOptions ++= Seq("-language:_", "-deprecation")
-  ) ++ publishingSettings :_*
+  name := "play-scalate",
+  organization := "org.scalatra.scalate",
+  version := "0.5.1-SNAPSHOT",
+  scalaVersion := "2.13.1",
+  crossScalaVersions := Seq("2.12.10", "2.13.2"),
+  resolvers += Resolver.typesafeRepo("releases"),
+  libraryDependencies ++= Seq(
+    "com.typesafe.play" %% "play" % play.core.PlayVersion.current % "provided",
+    "org.scalatra.scalate" %% "scalate-core" % "1.9.6" % "provided"
+  ),
+  scalacOptions ++= Seq("-language:_", "-deprecation"),
+  publishingSettings
 )
 
 val playAppName = "playapp"
