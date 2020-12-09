@@ -32,7 +32,7 @@ lazy val playapp = Project(
     guice,
     "org.scalatra.scalate" %% "scalate-core" % "1.9.6",
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
-    "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
+    "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test
   ),
   unmanagedResourceDirectories in Compile += baseDirectory.value / "app" / "views"
 )
