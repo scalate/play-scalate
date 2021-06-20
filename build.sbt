@@ -6,7 +6,7 @@ lazy val plugin = Project (
   organization := "org.scalatra.scalate",
   version := "0.5.1-SNAPSHOT",
   scalaVersion := "2.13.6",
-  crossScalaVersions := Seq("2.12.10", "2.13.6"),
+  crossScalaVersions := Seq("2.12.14", "2.13.6"),
   resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= Seq(
     "com.typesafe.play" %% "play" % play.core.PlayVersion.current % "provided",
@@ -25,7 +25,7 @@ lazy val playapp = Project(
 ).enablePlugins(PlayScala)
 .settings(
   resourceDirectories in Test += baseDirectory.value / "conf",
-  crossScalaVersions := Seq("2.12.10", "2.13.6"),
+  crossScalaVersions := Seq("2.12.14", "2.13.6"),
   scalaVersion := "2.13.6",
   version := playAppVersion,
   libraryDependencies ++= Seq(
@@ -34,7 +34,8 @@ lazy val playapp = Project(
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
     "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test
   ),
-  unmanagedResourceDirectories in Compile += baseDirectory.value / "app" / "views"
+  unmanagedResourceDirectories in Compile += baseDirectory.value / "app" / "views",
+  libraryDependencySchemes += "org.scala-lang.modules" %% "scala-parser-combinators" % "always"
 )
 .dependsOn(plugin)
 
