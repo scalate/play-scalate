@@ -4,6 +4,6 @@ sbt \
   ++2.12.15 \
   plugin/publishSigned \
   clean \
-  ++2.13.6 \
+  ++2.13.7 \
   plugin/publishSigned \
   sonatypeRelease
