@@ -24,7 +24,7 @@ lazy val playapp = Project(
   file("playapp")
 ).enablePlugins(PlayScala)
 .settings(
-  resourceDirectories in Test += baseDirectory.value / "conf",
+  Test / resourceDirectories += baseDirectory.value / "conf",
   crossScalaVersions := Seq("2.12.15", "2.13.8"),
   scalaVersion := "2.13.8",
   version := playAppVersion,
@@ -34,7 +34,7 @@ lazy val playapp = Project(
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
     "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test
   ),
-  unmanagedResourceDirectories in Compile += baseDirectory.value / "app" / "views",
+  Compile / unmanagedResourceDirectories += baseDirectory.value / "app" / "views",
   libraryDependencySchemes += "org.scala-lang.modules" %% "scala-parser-combinators" % "always"
 )
 .dependsOn(plugin)
