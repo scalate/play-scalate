@@ -22,7 +22,7 @@ class Scalate @Inject() (environment: Environment) {
       environment.resourceAsStream(uri).map { inputStream =>
         using(inputStream) { in =>
           using(Source.fromInputStream(in)) { src =>
-            StringResource(uri, src.getLines.mkString("\n"))
+            StringResource(uri, src.getLines().mkString("\n"))
           }
         }
       }
