@@ -6,11 +6,11 @@ lazy val plugin = Project (
   organization := "org.scalatra.scalate",
   version := "0.5.1-SNAPSHOT",
   scalaVersion := "2.13.10",
-  crossScalaVersions := Seq("2.12.16", "2.13.10"),
+  crossScalaVersions := Seq("2.12.17", "2.13.10"),
   resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= Seq(
     "com.typesafe.play" %% "play" % play.core.PlayVersion.current % "provided",
-    "org.scalatra.scalate" %% "scalate-core" % "1.9.7" % "provided"
+    "org.scalatra.scalate" %% "scalate-core" % "1.9.8" % "provided"
   ),
   scalacOptions ++= Seq("-language:_", "-deprecation"),
   publishingSettings
@@ -25,12 +25,13 @@ lazy val playapp = Project(
 ).enablePlugins(PlayScala)
 .settings(
   Test / resourceDirectories += baseDirectory.value / "conf",
-  crossScalaVersions := Seq("2.12.16", "2.13.10"),
+  crossScalaVersions := Seq("2.12.17", "2.13.10"),
   scalaVersion := "2.13.10",
   version := playAppVersion,
+  evictionErrorLevel := Level.Warn,
   libraryDependencies ++= Seq(
     guice,
-    "org.scalatra.scalate" %% "scalate-core" % "1.9.7",
+    "org.scalatra.scalate" %% "scalate-core" % "1.9.8",
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
     "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test
   ),
