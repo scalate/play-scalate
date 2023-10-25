@@ -6,7 +6,7 @@ lazy val plugin = Project (
   organization := "org.scalatra.scalate",
   version := "0.5.1-SNAPSHOT",
   scalaVersion := "2.13.12",
-  crossScalaVersions := Seq("2.12.18", "2.13.12"),
+  crossScalaVersions := Seq("2.13.12"),
   resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= Seq(
     "com.typesafe.play" %% "play" % play.core.PlayVersion.current % "provided",
@@ -25,7 +25,7 @@ lazy val playapp = Project(
 ).enablePlugins(PlayScala)
 .settings(
   Test / resourceDirectories += baseDirectory.value / "conf",
-  crossScalaVersions := Seq("2.12.18", "2.13.12"),
+  crossScalaVersions := Seq("2.13.12"),
   scalaVersion := "2.13.12",
   version := playAppVersion,
   evictionErrorLevel := Level.Warn,
@@ -33,7 +33,7 @@ lazy val playapp = Project(
     guice,
     "org.scalatra.scalate" %% "scalate-core" % "1.9.8",
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
-    "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test
+    "org.scalatestplus.play" %% "scalatestplus-play" % "6.0.0" % Test
   ),
   Compile / unmanagedResourceDirectories += baseDirectory.value / "app" / "views",
   libraryDependencySchemes += "org.scala-lang.modules" %% "scala-parser-combinators" % "always"
