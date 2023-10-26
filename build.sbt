@@ -9,7 +9,7 @@ lazy val plugin = Project (
   crossScalaVersions := Seq("2.13.12"),
   resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= Seq(
-    "com.typesafe.play" %% "play" % play.core.PlayVersion.current % "provided",
+    "org.playframework" %% "play" % play.core.PlayVersion.current % "provided",
     "org.scalatra.scalate" %% "scalate-core" % "1.9.8" % "provided"
   ),
   scalacOptions ++= Seq("-language:_", "-deprecation"),
@@ -33,7 +33,7 @@ lazy val playapp = Project(
     guice,
     "org.scalatra.scalate" %% "scalate-core" % "1.9.8",
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
-    "org.scalatestplus.play" %% "scalatestplus-play" % "6.0.0" % Test
+    "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.0" % Test
   ),
   Compile / unmanagedResourceDirectories += baseDirectory.value / "app" / "views",
   libraryDependencySchemes += "org.scala-lang.modules" %% "scala-parser-combinators" % "always"
