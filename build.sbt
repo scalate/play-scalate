@@ -5,8 +5,8 @@ lazy val plugin = Project (
   name := "play-scalate",
   organization := "org.scalatra.scalate",
   version := "0.5.1-SNAPSHOT",
-  scalaVersion := "2.13.13",
-  crossScalaVersions := Seq("2.13.13"),
+  scalaVersion := "2.13.14",
+  crossScalaVersions := Seq("2.13.14"),
   resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= Seq(
     "org.playframework" %% "play" % play.core.PlayVersion.current % "provided",
@@ -25,8 +25,8 @@ lazy val playapp = Project(
 ).enablePlugins(PlayScala)
 .settings(
   Test / resourceDirectories += baseDirectory.value / "conf",
-  crossScalaVersions := Seq("2.13.13"),
-  scalaVersion := "2.13.13",
+  crossScalaVersions := Seq("2.13.14"),
+  scalaVersion := "2.13.14",
   version := playAppVersion,
   evictionErrorLevel := Level.Warn,
   libraryDependencies ++= Seq(
