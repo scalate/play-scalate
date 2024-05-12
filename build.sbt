@@ -10,7 +10,7 @@ lazy val plugin = Project (
   resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= Seq(
     "org.playframework" %% "play" % play.core.PlayVersion.current % "provided",
-    "org.scalatra.scalate" %% "scalate-core" % "1.9.8" % "provided"
+    "org.scalatra.scalate" %% "scalate-core" % "1.10.1" % "provided"
   ),
   scalacOptions ++= Seq("-language:_", "-deprecation"),
   publishingSettings
@@ -31,7 +31,7 @@ lazy val playapp = Project(
   evictionErrorLevel := Level.Warn,
   libraryDependencies ++= Seq(
     guice,
-    "org.scalatra.scalate" %% "scalate-core" % "1.9.8",
+    "org.scalatra.scalate" %% "scalate-core" % "1.10.1",
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
     "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test
   ),
