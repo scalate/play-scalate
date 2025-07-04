@@ -33,7 +33,7 @@ lazy val playapp = Project(
     guice,
     "org.scalatra.scalate" %% "scalate-core" % "1.10.1",
     "org.scala-lang" % "scala-compiler" % scalaVersion.value,
-    "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test
+    "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.2" % Test
   ),
   Compile / unmanagedResourceDirectories += baseDirectory.value / "app" / "views",
   libraryDependencySchemes += "org.scala-lang.modules" %% "scala-parser-combinators" % "always"
