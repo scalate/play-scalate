@@ -11,7 +11,6 @@ lazy val plugin = Project (
   version := "0.5.1-SNAPSHOT",
   scalaVersion := scala213,
   crossScalaVersions := commonScalaVersions,
-  resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= Seq(
     "org.playframework" %% "play" % play.core.PlayVersion.current % "provided",
     "org.scalatra.scalate" %% "scalate-core" % "1.10.1" % "provided"
