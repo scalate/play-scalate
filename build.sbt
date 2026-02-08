@@ -1,3 +1,7 @@
+val scala213 = "2.13.18"
+val scala3 = "3.3.7"
+val commonScalaVersions = Seq(scala213, scala3)
+
 lazy val plugin = Project (
   id = "plugin",
   base = file ("plugin")
@@ -5,8 +9,8 @@ lazy val plugin = Project (
   name := "play-scalate",
   organization := "org.scalatra.scalate",
   version := "0.5.1-SNAPSHOT",
-  scalaVersion := "2.13.18",
-  crossScalaVersions := Seq("2.13.18"),
+  scalaVersion := scala213,
+  crossScalaVersions := commonScalaVersions,
   resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= Seq(
     "org.playframework" %% "play" % play.core.PlayVersion.current % "provided",
@@ -25,16 +29,20 @@ lazy val playapp = Project(
 ).enablePlugins(PlayScala)
 .settings(
   Test / resourceDirectories += baseDirectory.value / "conf",
-  crossScalaVersions := Seq("2.13.18"),
-  scalaVersion := "2.13.18",
+  crossScalaVersions := Seq(scala213),
+  scalaVersion := scala213,
   version := playAppVersion,
   evictionErrorLevel := Level.Warn,
   libraryDependencies ++= Seq(
     guice,
     "org.scalatra.scalate" %% "scalate-core" % "1.10.1",
-    "org.scala-lang" % "scala-compiler" % scalaVersion.value,
     "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.2" % Test
-  ),
+  ) ++ {
+    CrossVersion.partialVersion(scalaVersion.value) match {
+      case Some((3, _)) => Seq("org.scala-lang" %% "scala3-compiler" % scalaVersion.value)
+      case _ => Seq("org.scala-lang" % "scala-compiler" % scalaVersion.value)
+    }
+  },
   Compile / unmanagedResourceDirectories += baseDirectory.value / "app" / "views",
   libraryDependencySchemes += "org.scala-lang.modules" %% "scala-parser-combinators" % "always"
 )
