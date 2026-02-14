@@ -2,6 +2,8 @@ val scala213 = "2.13.18"
 val scala3 = "3.3.7"
 val commonScalaVersions = Seq(scala213, scala3)
 
+crossScalaVersions := commonScalaVersions
+
 lazy val plugin = Project (
   id = "plugin",
   base = file ("plugin")
@@ -28,10 +30,9 @@ lazy val playapp = Project(
 ).enablePlugins(PlayScala)
 .settings(
   Test / resourceDirectories += baseDirectory.value / "conf",
-  crossScalaVersions := Seq(scala213),
+  crossScalaVersions := commonScalaVersions,
   scalaVersion := scala213,
   version := playAppVersion,
-  evictionErrorLevel := Level.Warn,
   libraryDependencies ++= Seq(
     guice,
     "org.scalatra.scalate" %% "scalate-core" % "1.10.1",
