@@ -47,7 +47,14 @@ lazy val playapp = Project(
       }
     },
     Compile / unmanagedResourceDirectories += baseDirectory.value / "app" / "views",
-    libraryDependencySchemes += "org.scala-lang.modules" %% "scala-parser-combinators" % "always"
+    libraryDependencySchemes ++= {
+      scalaBinaryVersion.value match {
+        case "3" =>
+          Nil
+        case _ =>
+          Seq("org.scala-lang.modules" %% "scala-parser-combinators" % "always")
+      }
+    }
   )
   .dependsOn(plugin)
 
