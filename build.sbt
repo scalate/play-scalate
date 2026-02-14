@@ -3,6 +3,7 @@ val scala3 = "3.3.7"
 val commonScalaVersions = Seq(scala213, scala3)
 
 crossScalaVersions := commonScalaVersions
+publish / skip := true
 
 lazy val plugin = Project (
   id = "plugin",
@@ -30,6 +31,7 @@ lazy val playapp = Project(
   file("playapp")
 ).enablePlugins(PlayScala)
 .settings(
+  publish / skip := true,
   Test / resourceDirectories += baseDirectory.value / "conf",
   crossScalaVersions := commonScalaVersions,
   scalaVersion := scala213,
@@ -51,16 +53,10 @@ lazy val playapp = Project(
 
 val publishingSettings = Seq(
   publishMavenStyle := true,
-  publishTo := _publishTo(version.value),
+  publishTo := (if (isSnapshot.value) None else localStaging.value),
   Test / publishArtifact := false,
   pomExtra := _pomExtra
 )
-
-def _publishTo(v: String) = {
-  val nexus = "https://oss.sonatype.org/"
-  if (v.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "content/repositories/snapshots")
-  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
-}
 
 val _pomExtra =
   <url>http://github.com/scalate/play-scalate</url>
