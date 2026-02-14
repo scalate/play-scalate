@@ -1,3 +1,19 @@
+import ReleaseTransformations._
+
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  runClean,
+  setReleaseVersion,
+  commitReleaseVersion,
+  tagRelease,
+  releaseStepCommandAndRemaining("+ publishSigned"),
+  releaseStepCommandAndRemaining("sonaRelease"),
+  setNextVersion,
+  commitNextVersion,
+  pushChanges
+)
+
 val scala213 = "2.13.18"
 val scala3 = "3.3.7"
 val commonScalaVersions = Seq(scala213, scala3)
@@ -24,8 +40,7 @@ lazy val plugin = Project(
 ).settings(
   commonSettings,
   name := "play-scalate",
-  organization := "org.scalatra.scalate",
-  version := "0.5.1-SNAPSHOT",
+  organization := "io.github.scalate",
   scalaVersion := scala213,
   crossScalaVersions := commonScalaVersions,
   libraryDependencies ++= Seq(
@@ -36,20 +51,15 @@ lazy val plugin = Project(
   publishingSettings
 )
 
-val playAppName = "playapp"
-val playAppVersion = "1.0-SNAPSHOT"
-
 lazy val playapp = Project(
-  playAppName,
+  "playapp",
   file("playapp")
 ).enablePlugins(PlayScala)
   .settings(
     commonSettings,
     publish / skip := true,
-    Test / resourceDirectories += baseDirectory.value / "conf",
     crossScalaVersions := commonScalaVersions,
     scalaVersion := scala213,
-    version := playAppVersion,
     libraryDependencies ++= Seq(
       guice,
       "org.scalatra.scalate" %% "scalate-core" % "1.10.1",
