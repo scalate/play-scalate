@@ -1,13 +1,14 @@
 package controllers
 
-import jakarta.inject.{ Inject, Singleton }
-
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 import com.github.tototoshi.play2.scalate._
 import play.api.mvc._
 import scala.concurrent.Future
 
 @Singleton
-class MustacheController @Inject() (scalate: Scalate, val controllerComponents: ControllerComponents) extends BaseController {
+class MustacheController @Inject() (scalate: Scalate, val controllerComponents: ControllerComponents)
+    extends BaseController {
 
   def index = Action.async { implicit request =>
     Future.successful(
