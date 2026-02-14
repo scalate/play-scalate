@@ -4,8 +4,8 @@
 
 ```scala
 libraryDependencies ++= Seq(
-  "org.scalatra.scalate" %% "play-scalate" % "0.5.0",
-  "org.scalatra.scalate" %% "scalate-core" % "1.9.1",
+  "io.github.scalate" %% "play-scalate" % "0.6.0",
+  "org.scalatra.scalate" %% "scalate-core" % "1.10.1",
   "org.scala-lang" % "scala-compiler" % scalaVersion.value
 )
 
@@ -21,12 +21,15 @@ import jakarta.inject.{ Inject, Singleton }
 
 import com.github.tototoshi.play2.scalate._
 import play.api.mvc._
+import scala.concurrent.Future
 
 @Singleton
 class JadeController @Inject() (scalate: Scalate, val controllerComponents: ControllerComponents) extends BaseController {
 
-  def index = Action { implicit request =>
-    Ok(scalate.render("index.jade", Map("message" -> "hello, jade")))
+  def index = Action.async { implicit request =>
+    Future.successful(
+      Ok(scalate.render("index.jade", Map("message" -> "hello, jade")))
+    )
   }
 
 }
