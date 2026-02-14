@@ -5,10 +5,24 @@ val commonScalaVersions = Seq(scala213, scala3)
 crossScalaVersions := commonScalaVersions
 publish / skip := true
 
+lazy val commonSettings = Def.settings(
+  scalacOptions ++= Seq("-deprecation"),
+  scalacOptions ++= {
+    scalaBinaryVersion.value match {
+      case "3" =>
+        Nil
+      case _ =>
+        Seq("-Xsource:3-cross")
+    }
+  },
+  scalacOptions ~= (_.distinct),
+)
+
 lazy val plugin = Project(
   id = "plugin",
   base = file("plugin")
 ).settings(
+  commonSettings,
   name := "play-scalate",
   organization := "org.scalatra.scalate",
   version := "0.5.1-SNAPSHOT",
@@ -19,7 +33,6 @@ lazy val plugin = Project(
     "org.playframework" %% "play" % play.core.PlayVersion.current % "provided",
     "org.scalatra.scalate" %% "scalate-core" % "1.10.1" % "provided"
   ),
-  scalacOptions ++= Seq("-language:_", "-deprecation"),
   publishingSettings
 )
 
@@ -31,6 +44,7 @@ lazy val playapp = Project(
   file("playapp")
 ).enablePlugins(PlayScala)
   .settings(
+    commonSettings,
     publish / skip := true,
     Test / resourceDirectories += baseDirectory.value / "conf",
     crossScalaVersions := commonScalaVersions,
