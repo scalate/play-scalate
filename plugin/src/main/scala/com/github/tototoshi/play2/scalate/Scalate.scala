@@ -1,10 +1,10 @@
 package com.github.tototoshi.play2.scalate
 
-import jakarta.inject.{ Inject, Singleton }
-
-import play.api.{ Environment, Mode }
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
+import play.api.Environment
+import play.api.Mode
 import play.twirl.api.Html
-
 import scala.io.Source
 
 @Singleton
@@ -16,7 +16,8 @@ class Scalate @Inject() (environment: Environment) {
 
   class ClassPathResourceLoader extends ResourceLoader {
     private def using[A, R <: AutoCloseable](r: R)(f: R => A): A =
-      try { f(r) } finally { r.close() }
+      try { f(r) }
+      finally { r.close() }
 
     override def resource(uri: String): Option[Resource] = {
       environment.resourceAsStream(uri).map { inputStream =>
@@ -51,7 +52,8 @@ class Scalate @Inject() (environment: Environment) {
         e.pos.line,
         e.pos.column,
         e.brief,
-        e)
+        e
+      )
   }
 
 }

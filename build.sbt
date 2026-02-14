@@ -5,9 +5,9 @@ val commonScalaVersions = Seq(scala213, scala3)
 crossScalaVersions := commonScalaVersions
 publish / skip := true
 
-lazy val plugin = Project (
+lazy val plugin = Project(
   id = "plugin",
-  base = file ("plugin")
+  base = file("plugin")
 ).settings(
   name := "play-scalate",
   organization := "org.scalatra.scalate",
@@ -30,26 +30,26 @@ lazy val playapp = Project(
   playAppName,
   file("playapp")
 ).enablePlugins(PlayScala)
-.settings(
-  publish / skip := true,
-  Test / resourceDirectories += baseDirectory.value / "conf",
-  crossScalaVersions := commonScalaVersions,
-  scalaVersion := scala213,
-  version := playAppVersion,
-  libraryDependencies ++= Seq(
-    guice,
-    "org.scalatra.scalate" %% "scalate-core" % "1.10.1",
-    "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.2" % Test
-  ) ++ {
-    CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((3, _)) => Seq("org.scala-lang" %% "scala3-compiler" % scalaVersion.value)
-      case _ => Seq("org.scala-lang" % "scala-compiler" % scalaVersion.value)
-    }
-  },
-  Compile / unmanagedResourceDirectories += baseDirectory.value / "app" / "views",
-  libraryDependencySchemes += "org.scala-lang.modules" %% "scala-parser-combinators" % "always"
-)
-.dependsOn(plugin)
+  .settings(
+    publish / skip := true,
+    Test / resourceDirectories += baseDirectory.value / "conf",
+    crossScalaVersions := commonScalaVersions,
+    scalaVersion := scala213,
+    version := playAppVersion,
+    libraryDependencies ++= Seq(
+      guice,
+      "org.scalatra.scalate" %% "scalate-core" % "1.10.1",
+      "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.2" % Test
+    ) ++ {
+      CrossVersion.partialVersion(scalaVersion.value) match {
+        case Some((3, _)) => Seq("org.scala-lang" %% "scala3-compiler" % scalaVersion.value)
+        case _ => Seq("org.scala-lang" % "scala-compiler" % scalaVersion.value)
+      }
+    },
+    Compile / unmanagedResourceDirectories += baseDirectory.value / "app" / "views",
+    libraryDependencySchemes += "org.scala-lang.modules" %% "scala-parser-combinators" % "always"
+  )
+  .dependsOn(plugin)
 
 val publishingSettings = Seq(
   publishMavenStyle := true,
