@@ -14,6 +14,7 @@ lazy val plugin = Project (
   scalaVersion := scala213,
   crossScalaVersions := commonScalaVersions,
   libraryDependencies ++= Seq(
+    "jakarta.inject" % "jakarta.inject-api" % "2.0.1",
     "org.playframework" %% "play" % play.core.PlayVersion.current % "provided",
     "org.scalatra.scalate" %% "scalate-core" % "1.10.1" % "provided"
   ),

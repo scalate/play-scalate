@@ -17,7 +17,7 @@ Compile / unmanagedResourceDirectories += baseDirectory.value / "app" / "views"
 ```scala
 package controllers
 
-import javax.inject.{ Inject, Singleton }
+import jakarta.inject.{ Inject, Singleton }
 
 import com.github.tototoshi.play2.scalate._
 import play.api.mvc._

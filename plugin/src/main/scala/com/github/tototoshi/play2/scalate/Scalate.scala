@@ -1,6 +1,6 @@
 package com.github.tototoshi.play2.scalate
 
-import javax.inject.{ Inject, Singleton }
+import jakarta.inject.{ Inject, Singleton }
 
 import play.api.{ Environment, Mode }
 import play.twirl.api.Html
