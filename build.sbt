@@ -14,7 +14,7 @@ releaseProcess := Seq[ReleaseStep](
   pushChanges
 )
 
-val scala213 = "2.13.18"
+val scala213 = "3.9.0"
 val scala3 = "3.3.8"
 val commonScalaVersions = Seq(scala213, scala3)
 
