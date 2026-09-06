@@ -35,7 +35,7 @@ class Scalate @Inject() (environment: Environment) {
     e.resourceLoader = new ClassPathResourceLoader()
     val availableTemplateTypes = Seq("jade", "scaml", "mustache", "ssp")
     val defaultTemplates = availableTemplateTypes.map("layouts/default." + _)
-    e.layoutStrategy = new DefaultLayoutStrategy(e, defaultTemplates: _*)
+    e.layoutStrategy = new DefaultLayoutStrategy(e, defaultTemplates*)
     e.classLoader = environment.classLoader
     e.allowReload = environment.mode == Mode.Dev
     e.allowCaching = environment.mode == Mode.Prod
